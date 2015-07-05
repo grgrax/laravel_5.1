@@ -77,7 +77,7 @@ Route::group(['as'=>'donee::'],function(){
 
 //here name is must if ? is not provided it will result to error
 Route::get('group/{name?}', function ($name = 'John') {
-    return $name;
+	return $name;
 });
 
 Route::get('user/{id}/profile', ['as' => 'profile', function ($id) {
@@ -85,8 +85,8 @@ Route::get('user/{id}/profile', ['as' => 'profile', function ($id) {
 }]);
 
 Route::get('user/profile', [
-    'as' => 'profile', 'uses' => 'Profile\UserController@showProfile'
-]);
+	'as' => 'profile', 'uses' => 'Profile\UserController@showProfile'
+	]);
 
 
 Route::get('front/',function(){
@@ -103,8 +103,16 @@ Route::get('front/',function(){
 
 //prefix route
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('users', function ()    {
-        echo "Matches The /admin/users URL";
-    });
+	Route::get('users', function ()    {
+		echo "Matches The /admin/users URL";
+	});
 });
 
+Route::get('/jpt',function(){
+	return abort(404);
+});
+
+//custom middleware
+Route::get('/senior_citizen',['middleware' => 'age',function(){
+	return "only for senior citizen";
+}]);

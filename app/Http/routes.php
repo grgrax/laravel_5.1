@@ -59,14 +59,14 @@ Route::get('category/post/date/images/top3',['as'=>'top3',function(){
 	return "top 3 images for any date of post under category";
 }]);
 
-//group route
-Route::group(['as' => 'admin::'], function () {
+//group route with middleware
+Route::group(['middleware' => 'auth','as' => 'admin::'], function () {
 	Route::get('dashboard', ['as' => 'dashboard', function () {
         // Route named "admin::dashboard"
 	}]);
 });
 Route::group(['as'=>'donee::'],function(){
-	Route::get('dashboard',['as'=>'dashboard',function(){
+	Route::get('donee/dashboard',['as'=>'dashboard',function(){
 		return "inside dashboard of donee";
 	}]);
 	Route::get('campaign',['as'=>'campaign',function(){
@@ -84,6 +84,10 @@ Route::get('user/{id}/profile', ['as' => 'profile', function ($id) {
     //
 }]);
 
+Route::get('user/profile', [
+    'as' => 'profile', 'uses' => 'Profile\UserController@showProfile'
+]);
+
 
 Route::get('front/',function(){
 	
@@ -94,5 +98,13 @@ Route::get('front/',function(){
 	// return $url = route('profile', ['id' => 1]);
 	
 	return View::make('front/main');
+});
+
+
+//prefix route
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('users', function ()    {
+        echo "Matches The /admin/users URL";
+    });
 });
 

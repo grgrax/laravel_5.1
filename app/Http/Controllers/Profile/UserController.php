@@ -15,4 +15,5 @@ class UserController extends Controller
     public function showProfile(){
         echo "inside showProfile";
     }
+
 }

@@ -89,7 +89,7 @@ Route::get('user/profile', [
 	]);
 
 
-Route::get('front/',function(){
+Route::get('frontend/',function(){
 	
 	// return $url = route('top3');
 	// return $url = route('donee::dashboard');
@@ -116,3 +116,46 @@ Route::get('/jpt',function(){
 Route::get('/senior_citizen',['middleware' => 'age',function(){
 	return "only for senior citizen";
 }]);
+
+
+
+//some front end routes
+Route::get('/front',function(){
+	$data['subView']='front/templates/index';
+	$data['otherPages']=['about','gallery','news'];
+	return View::make('front/layout',$data);
+});
+
+Route::get('/front/category',function(){
+	$data['categories']=['uncategoried','beauty','fitness'];
+	$data['subView']='front/templates/category';
+	return View::make('front/layout',$data);
+});
+
+Route::get('/front/signup',function(){
+	$data['subView']='front/templates/signup';
+	$data['otherPages']=['about','gallery','news'];
+	return View::make('front/layout',$data);
+});
+
+
+//auth
+Route::get('/front/login',function(){
+	$data['subView']='front/templates/login';
+	$data['otherPages']=['about','gallery','news'];
+	return View::make('front/layout',$data);
+});
+
+Route::post('/front/login',function(){
+	$username=Input::get('username');
+	$password=Hash::make(Input::get('username'));
+	return "$username : $password";
+});
+
+Route::get('/front/secret',array(
+	'before'=>'auth.basic',
+	function()
+	{
+		return "inside  secret";
+	}
+));

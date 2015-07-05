@@ -35,7 +35,6 @@ Route::get('post/images/{title?}',function($title='cover_pic'){
 	return "get image/images of post $title";
 });
 
-
 //regular expression
 Route::get('article/{id}',function($id){
 	return "article id: $id number [0-9]+'";
@@ -44,6 +43,7 @@ Route::get('article/{id}',function($id){
 Route::get('article/{slug}',function($slug){
 	return "article slug: $slug alphabet [A-Za-z]+";
 })->where('slug','[A-Za-z]+');
+
 //Global Constraints better approach refer file
 // /var/www/html/rax/laravel_5.1/app/Providers/RouteServiceProvider.php
 Route::get('group/{id}',function($id){
@@ -158,4 +158,18 @@ Route::get('/front/secret',array(
 	{
 		return "inside  secret";
 	}
-));
+	));
+
+// frontend group route
+Route::group(['as' => 'fronend::'], function () {
+	Route::get('fronend/group', ['as' => 'group', function () {
+        // Route named "fronend::dashboard"
+	}]);
+	Route::get('fronend/group/add', ['as' => 'group', function () {
+        // Route named "fronend::dashboard"
+	}]);
+	Route::get('fronend/group/{slug}', ['as' => 'group', function () {
+        // Route named "admin::dashboard"
+	}]);
+});
+

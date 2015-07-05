@@ -162,13 +162,13 @@ Route::get('/front/secret',array(
 
 // frontend group route
 Route::group(['as' => 'fronend::'], function () {
-	Route::get('fronend/group', ['as' => 'group', function () {
-        // Route named "fronend::dashboard"
+	Route::get('frontend/group', ['as' => 'group', function () {
+        // Route named "frontend::dashboard"
 	}]);
-	Route::get('fronend/group/add', ['as' => 'group', function () {
-        // Route named "fronend::dashboard"
+	Route::get('frontend/group/add', ['as' => 'group', function () {
+        // Route named "frontend::dashboard"
 	}]);
-	Route::get('fronend/group/{slug}', ['as' => 'group', function () {
+	Route::get('frontend/group/{slug}', ['as' => 'group', function () {
         // Route named "admin::dashboard"
 	}]);
 });

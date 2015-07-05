@@ -24,7 +24,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+        //custom constrait for id (must be [0-9]+)
+        $router->pattern('id','[0-9]+');
+        $router->pattern('slug','[A-Za-z]+');
 
         parent::boot($router);
     }

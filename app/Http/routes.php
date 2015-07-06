@@ -162,26 +162,26 @@ Route::get('/front/secret',array(
 
 // frontend category route
 Route::group(['as' => 'frontend::'], function () {
-	Route::get('frontend/category', ['as' => 'categories', function () {
-		$data['subView']='front/templates/category/index';
-		$data['otherPages']=['about','gallery','news'];	
+	Route::get('category', ['as' => 'categories', function () {
+		// $data['subView']='front/templates/category/index';
+		// $data['otherPages']=['about','gallery','news'];	
 		// return View::make('front/layout',$data);
 		// return view('front.layout',$data); 
+
 		$data['categories']=array(
 			array('slug'=>'gallery','desc'=>'gallery description'),
 			array('slug'=>'inspiration','desc'=>'inspiration description'),
 			array('slug'=>'art','desc'=>'art description'),
 			);
-		// echo "<pre>";
-		// print_r($data);
-		return view('front/layout',$data); 
+		return view('layouts/categories',$data);
+
+		// return view('front/layout',$data); 
 	}]);
 	Route::get('frontend/category/{slug}', ['as' => 'category', function ($slug) {
-		$data['subView']='front/templates/category/view';
-		$data['otherPages']=['about','gallery','news'];
+
 		$data['category']=array('slug'=>'gadgets','desc'=>'all description');
 		View::share('data',$data); 
-		return view('front/layout',$data); 
+		return view('layouts/category',$data);
 	}]);
 	Route::get('frontend/category/{slug}/posts', ['as' => 'category_posts', function () {
 		$data['subView']='front/templates/category';

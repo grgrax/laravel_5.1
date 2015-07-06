@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+// Route::get('/', function () {
+// 	return view('welcome');
+// });
 
-Route::get('about',function(){
+Route::get('env',function(){
 
 	echo $environment = App::environment();
 	echo $environment = app()->environment();
@@ -24,7 +24,7 @@ Route::get('about',function(){
 	config(['app.timezone' => 'America/Chicago']);
 	echo $value = config('app.timezone');
 	
-	return "about page";
+	return "env page";
 });
 
 Route::get('category/{id}',function($id){
@@ -160,16 +160,67 @@ Route::get('/front/secret',array(
 	}
 	));
 
-// frontend group route
-Route::group(['as' => 'fronend::'], function () {
-	Route::get('frontend/group', ['as' => 'group', function () {
-        // Route named "frontend::dashboard"
+// frontend category route
+Route::group(['as' => 'frontend::'], function () {
+	Route::get('frontend/category', ['as' => 'categories', function () {
+		$data['subView']='front/templates/category/index';
+		$data['otherPages']=['about','gallery','news'];	
+		// return View::make('front/layout',$data);
+		// return view('front.layout',$data); 
+		$data['categories']=array(
+			array('slug'=>'gallery','desc'=>'gallery description'),
+			array('slug'=>'inspiration','desc'=>'inspiration description'),
+			array('slug'=>'art','desc'=>'art description'),
+			);
+		// echo "<pre>";
+		// print_r($data);
+		return view('front/layout',$data); 
 	}]);
-	Route::get('frontend/group/add', ['as' => 'group', function () {
-        // Route named "frontend::dashboard"
+	Route::get('frontend/category/{slug}', ['as' => 'category', function ($slug) {
+		$data['subView']='front/templates/category/view';
+		$data['otherPages']=['about','gallery','news'];
+		$data['category']=array('slug'=>'gadgets','desc'=>'all description');
+		View::share('data',$data); 
+		return view('front/layout',$data); 
 	}]);
-	Route::get('frontend/group/{slug}', ['as' => 'group', function () {
-        // Route named "admin::dashboard"
+	Route::get('frontend/category/{slug}/posts', ['as' => 'category_posts', function () {
+		$data['subView']='front/templates/category';
+		$data['otherPages']=['about','gallery','news'];
+		$data['category']=array('slug'=>'gadgets','desc'=>'all description');
+		$data['posts']=array(
+			array('slug'=>'samsung','desc'=>'all description'),
+			array('slug'=>'dell','desc'=>'all description'),
+			array('slug'=>'apple','desc'=>'all description'),
+			);
+		return view('front/layout',$data); 
 	}]);
+});
+
+
+// some blades
+Route::group(['as'=>'blade::'],function(){
+	
+	// Route::get('blade',['as'=>'blade_layout',function(){
+	// 	// return "blade_layout";
+	// 	return view('layouts/blade_layout');
+	// }]);
+	// Route::get('blade/header',['as'=>'blade_header',function(){
+	// 	return "blade_header";		
+	// }]);
+	// Route::get('blade/footer',['as'=>'blade_footer',function(){
+	// 	return "blade_footer";		
+	// }]);
+	// Route::get('blade/main_content',['as'=>'blade_main_content',function(){
+	// 	return "blade_main_content";		
+	// }]);
+
+	//home, about
+	Route::get('home',['as'=>'home',function(){
+		return view('layouts/home');
+	}]);
+	Route::get('about',['as'=>'about',function(){
+		return view('layouts/about');
+	}]);
+
 });
 

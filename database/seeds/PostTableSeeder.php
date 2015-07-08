@@ -1,9 +1,6 @@
 <?php
 
-use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-
-
 
 class PostTableSeeder extends Seeder
 {
@@ -14,16 +11,6 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-
-		// factory('App\Post', 50)->create()->each(function($p) {
-		//         $p->posts()->save(factory('App\Post')->make());
-		//     });
-        
-        $faker = Faker::create();
-        DB::table('posts')->insert([
-            'name' => $faker->lastName,
-            'email' => $faker->freeEmail,
-          'password' => bcrypt('secret'),
-        ]); 
+      factory(App\Post::class, 3)->create();
     }
 }

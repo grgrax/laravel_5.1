@@ -20,18 +20,20 @@ $factory->define(App\User::class, function ($faker) {
     ];
 });
 
+$factory->define(App\Post::class, function ($faker) {
+    return [
+        'title' => $faker->word,
+        'slug' => $faker->word,
+        'content' => $faker->sentence,
+        'user_id'=>4
+    ];
+});
 
-// $factory->define(App\Post::class, function ($faker) {
-// 	return [
-// 		'title' => $faker->sentence,
-// 		'content' => $faker->paragraph
-// 	];
-// });
 
 $factory->define(App\Category::class, function ($faker) {
 	return [
-		'title' => $faker->sentence,
-		'content' => $faker->paragraph
+		'title' => $faker->word,
+		'slug' => $faker->word
 	];
 });
 

@@ -12,10 +12,18 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-		$faker = Faker::create();
-		DB::table('categories')->insert([
-    		'title' => $faker->word,
-    		'slug' => $faker->word,
-    	]);    
-    }
- }
+
+      //manual apporach 
+      /*  
+      $faker = Faker::create();
+      DB::table('categories')->insert([
+          'title' => $faker->word,
+          'slug' => $faker->word,
+          ]);
+      */
+
+      //factory approach
+      factory(App\Category::class, 3)->create();
+
+  }
+}

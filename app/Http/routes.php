@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-// 	return view('welcome');
-// });
+Route::get('/', function () {
+	return view('welcome');
+});
 
 Route::get('env',function(){
 
@@ -35,6 +35,7 @@ Route::get('post/images/{title?}',function($title='cover_pic'){
 	return "get image/images of post $title";
 });
 
+
 //regular expression
 Route::get('article/{id}',function($id){
 	return "article id: $id number [0-9]+'";
@@ -43,13 +44,11 @@ Route::get('article/{id}',function($id){
 Route::get('article/{slug}',function($slug){
 	return "article slug: $slug alphabet [A-Za-z]+";
 })->where('slug','[A-Za-z]+');
-
 //Global Constraints better approach refer file
 // /var/www/html/rax/laravel_5.1/app/Providers/RouteServiceProvider.php
 Route::get('group/{id}',function($id){
 	return "group id: $id number [0-9]+'";
 });
-
 Route::get('group/{slug}',function($slug){
 	return "group slug: $slug alphabet [A-Za-z]+";
 });
@@ -79,11 +78,6 @@ Route::group(['as'=>'donee::'],function(){
 Route::get('group/{name?}', function ($name = 'John') {
 	return $name;
 });
-
-Route::get('user/{id}/profile', ['as' => 'profile', function ($id) {
-    //
-}]);
-
 Route::get('user/profile', [
 	'as' => 'profile', 'uses' => 'Profile\UserController@showProfile'
 	]);
@@ -177,13 +171,13 @@ Route::group(['as' => 'frontend::'], function () {
 
 		// return view('front/layout',$data); 
 	}]);
-	Route::get('frontend/category/{slug}', ['as' => 'category', function ($slug) {
+	Route::get('category/{slug}', ['as' => 'category', function ($slug) {
 
 		$data['category']=array('slug'=>'gadgets','desc'=>'all description');
 		View::share('data',$data); 
 		return view('layouts/category',$data);
 	}]);
-	Route::get('frontend/category/{slug}/posts', ['as' => 'category_posts', function () {
+	Route::get('category/{slug}/posts', ['as' => 'category_posts', function () {
 		$data['subView']='front/templates/category';
 		$data['otherPages']=['about','gallery','news'];
 		$data['category']=array('slug'=>'gadgets','desc'=>'all description');
@@ -223,4 +217,48 @@ Route::group(['as'=>'blade::'],function(){
 	}]);
 
 });
+
+
+Route::group(['as' => 'dashboard::'], function () {
+	Route::get('dashboard', ['as' => 'dashboard', function () {
+		return view('admin/dashboard');
+	}]);
+
+	//post management
+	/*
+	Route::get('post', ['as' => 'posts', function () {
+		$data['posts']=array(
+			array('slug'=>'gallery','desc'=>'gallery description'),
+			array('slug'=>'inspiration','desc'=>'inspiration description'),
+			array('slug'=>'art','desc'=>'art description'),
+			);
+		return view('admin/post/index',$data);
+	}]);
+	Route::get('post/{slug}', ['as' => 'post', function ($slug) {
+		$data['post']=array('slug'=>'art','desc'=>'art description');
+		return view('admin/post/view',$data);
+	}]);
+	Route::get('post/{slug}/edit', ['as' => 'post_edit', function ($slug) {
+		$data['post']=array('slug'=>'art','desc'=>'art description');
+		return view('admin/post/edit',$data);
+	}]);
+	Route::get('post/{slug}/delete', ['as' => 'post_delete', function ($slug) {
+		$data['post']=array('slug'=>'art','desc'=>'art description');
+		return view('admin/post/delete',$data);
+	}]);
+	Route::get('post/add', ['as' => 'post_add', function ($slug) {
+		$data['post']=array('slug'=>'art','desc'=>'art description');
+		return view('admin/post/add',$data);
+	}]);
+	*/
+
+	Route::get('users/banned', ['as' => 'admin.access.users.banned', 'uses' => 'UserController@banned']);
+	Route::get('post', ['as' => 'posts', 'uses'=>'PostController@index']);
+	Route::get('post/{slug}', ['as' => 'post', 'uses'=>'PostController@index']);
+	Route::get('post/{slug}/edit', ['as' => 'post_edit', 'uses'=>'PostController@index']);
+	Route::get('post/{slug}/edit', ['as' => 'post_delete', 'uses'=>'PostController@index']);
+	Route::get('post/add', ['as' => 'post_add', 'uses'=>'PostController@index']);
+	
+});
+
 

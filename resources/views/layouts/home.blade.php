@@ -2,10 +2,6 @@
 
 @section('title', 'Home Page')
 
-@section('header')
-@parent
-@endsection
-
 @section('content')
 <div id="myheader-intro">
 	<div class="row">
@@ -122,6 +118,3 @@
 
 @endsection
 
-@section('header')
-@parent
-@endsection

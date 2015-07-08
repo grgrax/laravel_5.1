@@ -1,10 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Home Page')
-
-@section('header')
-@parent
-@endsection
+@section('title', 'Categories')
 
 @section('content')
 <div class="content mysection1" id="contact">
@@ -27,6 +23,3 @@
 </div>
 @endsection
 
-@section('header')
-@parent
-@endsection

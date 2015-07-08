@@ -16,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('admin/post/index',$data);
+        return die("i");
+        // return view('admin/post/index',$data);
     }
 
     /**
@@ -26,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return die("c");
     }
 
     /**
@@ -47,7 +48,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return die("s");
     }
 
     /**
@@ -58,7 +59,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return die("e");
     }
 
     /**

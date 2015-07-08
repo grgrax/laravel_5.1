@@ -252,12 +252,15 @@ Route::group(['as' => 'dashboard::'], function () {
 	}]);
 	*/
 
-	Route::get('users/banned', ['as' => 'admin.access.users.banned', 'uses' => 'UserController@banned']);
+	// Route::get('users/banned', ['as' => 'admin.access.users.banned', 'uses' => 'UserController@banned']);
+	
 	Route::get('post', ['as' => 'posts', 'uses'=>'PostController@index']);
-	Route::get('post/{slug}', ['as' => 'post', 'uses'=>'PostController@index']);
-	Route::get('post/{slug}/edit', ['as' => 'post_edit', 'uses'=>'PostController@index']);
-	Route::get('post/{slug}/edit', ['as' => 'post_delete', 'uses'=>'PostController@index']);
-	Route::get('post/add', ['as' => 'post_add', 'uses'=>'PostController@index']);
+	Route::get('post/add', ['as' => 'post_create', 'uses'=>'PostController@create']);
+	Route::post('post/add', ['as' => 'post_store', 'uses'=>'PostController@store']);
+	Route::get('post/{slug}', ['as' => 'post', 'uses'=>'PostController@show']);
+	Route::get('post/{slug}/edit', ['as' => 'post_edit', 'uses'=>'PostController@edit']);
+	Route::post('post/{slug}/edit', ['as' => 'post_update', 'uses'=>'PostController@update']);
+	Route::get('post/{slug}/delete', ['as' => 'post_destroy', 'uses'=>'PostController@destroy']);
 	
 });
 

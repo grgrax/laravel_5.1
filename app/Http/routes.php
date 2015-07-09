@@ -33,9 +33,21 @@ Route::get('env',function(){
 	return "env page";
 });
 
+
+/*
 Route::get('category/{id}',function($id){
 	return "get post of category $id";
 });
+//named route
+Route::get('category/post/date/images/top3',['as'=>'top3',function(){
+	return "top 3 images for any date of post under category";
+}]);
+Route::get('/front/category',function(){
+	$data['categories']=['uncategoried','beauty','fitness'];
+	$data['subView']='front/templates/category';
+	return View::make('front/layout',$data);
+});
+*/
 
 Route::get('post/images/{title?}',function($title='cover_pic'){
 	return "get image/images of post $title";
@@ -59,10 +71,6 @@ Route::get('group/{slug}',function($slug){
 	return "group slug: $slug alphabet [A-Za-z]+";
 });
 
-//named route
-Route::get('category/post/date/images/top3',['as'=>'top3',function(){
-	return "top 3 images for any date of post under category";
-}]);
 
 //group route with middleware
 Route::group(['middleware' => 'auth','as' => 'admin::'], function () {
@@ -127,11 +135,6 @@ Route::get('/front',function(){
 	return View::make('front/layout',$data);
 });
 
-Route::get('/front/category',function(){
-	$data['categories']=['uncategoried','beauty','fitness'];
-	$data['subView']='front/templates/category';
-	return View::make('front/layout',$data);
-});
 
 Route::get('/front/signup',function(){
 	$data['subView']='front/templates/signup';
@@ -160,42 +163,6 @@ Route::get('/front/secret',array(
 		return "inside  secret";
 	}
 	));
-
-// frontend category route
-Route::group(['as' => 'frontend::'], function () {
-	Route::get('category', ['as' => 'categories', function () {
-		// $data['subView']='front/templates/category/index';
-		// $data['otherPages']=['about','gallery','news'];	
-		// return View::make('front/layout',$data);
-		// return view('front.layout',$data); 
-
-		$data['categories']=array(
-			array('slug'=>'gallery','desc'=>'gallery description'),
-			array('slug'=>'inspiration','desc'=>'inspiration description'),
-			array('slug'=>'art','desc'=>'art description'),
-			);
-		return view('layouts/categories',$data);
-
-		// return view('front/layout',$data); 
-	}]);
-	Route::get('category/{slug}', ['as' => 'category', function ($slug) {
-
-		$data['category']=array('slug'=>'gadgets','desc'=>'all description');
-		View::share('data',$data); 
-		return view('layouts/category',$data);
-	}]);
-	Route::get('category/{slug}/posts', ['as' => 'category_posts', function () {
-		$data['subView']='front/templates/category';
-		$data['otherPages']=['about','gallery','news'];
-		$data['category']=array('slug'=>'gadgets','desc'=>'all description');
-		$data['posts']=array(
-			array('slug'=>'samsung','desc'=>'all description'),
-			array('slug'=>'dell','desc'=>'all description'),
-			array('slug'=>'apple','desc'=>'all description'),
-			);
-		return view('front/layout',$data); 
-	}]);
-});
 
 
 // some blades
@@ -254,7 +221,6 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard::'], function () {
 	Route::get('category', ['as' => 'category', 'uses'=>'CategoryController@index']);
 	Route::get('category/add', ['as' => 'category_create', 'uses'=>'CategoryController@create']);
 	Route::post('category/add', ['as' => 'category_store', 'uses'=>'CategoryController@store']);
-	Route::get('category/{slug}', ['as' => 'category_show', 'uses'=>'CategoryController@show']);
 	Route::get('category/{slug}/edit', ['as' => 'category_edit', 'uses'=>'CategoryController@edit']);
 	Route::post('category/{slug}/edit', ['as' => 'category_update', 'uses'=>'CategoryController@update']);
 	Route::get('category/{slug}/delete', ['as' => 'category_destroy', 'uses'=>'CategoryController@destroy']);

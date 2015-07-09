@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Category;
+use Input;
+use Redirect;
 
 class CategoryController extends Controller
 {
@@ -39,19 +41,13 @@ class CategoryController extends Controller
      */
     public function store()
     {
-        dd('s');
+        $category=new Category;
+        $category->title=Input::get('title');
+        $category->slug=str_slug(Input::get('title'));
+        $category->save();
+        return Redirect::route('dashboard::category');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        dd('s');
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -59,9 +55,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        dd('e');
+        $category=Category::where('slug',$slug)->get()->first();
+        // dd($category);
+        return view('admin/category/edit',compact('category'));
     }
 
     /**
@@ -70,9 +68,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update($slug)
     {
-        dd('u');
+        $category=Category::where('slug',$slug)->get()->first();
+        $category->title=Input::get('title');
+        $category->save();
+        return Redirect::route('dashboard::category');
     }
 
     /**
@@ -81,8 +82,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        dd('d');
+        $category=Category::where('slug',$slug)->get()->first();
+        $category->delete();
+        return Redirect::route('dashboard::category');
     }
 }

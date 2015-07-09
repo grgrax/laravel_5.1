@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $category->title=Input::get('title');
         $category->slug=str_slug(Input::get('title'));
         $category->save();
-        return Redirect::route('dashboard::category');
+        return Redirect::route('dashboard::dashboard.category.index');
     }
 
 
@@ -73,7 +73,8 @@ class CategoryController extends Controller
         $category=Category::where('slug',$slug)->get()->first();
         $category->title=Input::get('title');
         $category->save();
-        return Redirect::route('dashboard::category');
+        // return Redirect::route('dashboard::category');
+        return Redirect::route('dashboard::dashboard.category.index');
     }
 
     /**
@@ -86,6 +87,8 @@ class CategoryController extends Controller
     {
         $category=Category::where('slug',$slug)->get()->first();
         $category->delete();
-        return Redirect::route('dashboard::category');
+        // return Redirect::route('dashboard::category');
+        return Redirect::route('dashboard::dashboard.category.index');
+
     }
 }

@@ -7,7 +7,7 @@
 
 
 
-{!! Form::open(['route'=> 'dashboard::category_store','method'=>'POST']) !!}
+{!! Form::open(['route'=> 'dashboard::dashboard.category.store','method'=>'POST']) !!}
 <div class="form-group">
 	<label for="title">Title</label>
 	<input type="text" name="title" class="form-control" id="" placeholder="Input field"
@@ -15,7 +15,7 @@
 </div>
 
 <button type="submit" name="submit" class="btn btn-success">Submit</button>
-<a href="{{ route('dashboard::category') }}" class="btn btn-warning">Cancel</a>
+<a href="{{ route('dashboard::dashboard.category.index') }}" class="btn btn-warning">Cancel</a>
 {!! Form::close() !!}
 @endsection
 

@@ -15,7 +15,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="">Dashboard</a></li>
                         <li>
-                            <a href="{{ route('dashboard::category') }}">Categories</a>
+                            <a href="{{ route('dashboard::dashboard.category.index') }}">Categories</a>
                         </li>
                         <li>
                             <a href="{{ route('dashboard::post') }}">Posts</a>

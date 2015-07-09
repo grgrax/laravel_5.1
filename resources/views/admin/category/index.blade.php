@@ -4,7 +4,7 @@
 
 @section('content')
 <h3 class="heading">Categories</h3>
-<a href="{{ route('dashboard::category_create') }}">New</a><hr>
+<a href="{{ route('dashboard::dashboard.category.create') }}">New</a><hr>
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -24,8 +24,8 @@
 			<td>{{$category['created_at']}}</td>
 			<td>{{$category['updated_at']}}</td>
 			<td>
-				<a href="{{ route('dashboard::category_edit',['slug'=>$category['slug']]) }}">Edit</a> / 							
-				<a href="{{ route('dashboard::category_destroy',['slug'=>$category['slug']]) }}">Delete</a>							
+				<a href="{{ route('dashboard::dashboard.category.edit',['slug'=>$category['slug']]) }}">Edit</a> / 							
+				<a href="{{ route('dashboard::dashboard.category.destroy',['slug'=>$category['slug']]) }}">Delete</a>							
 			</td>
 		</tr>
 		@endforeach
@@ -33,4 +33,6 @@
 	</tbody>
 </table>
 @endsection
+
+
 

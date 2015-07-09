@@ -218,12 +218,14 @@ Route::group(['prefix' => 'dashboard','as' => 'dashboard::'], function () {
 	Route::get('post/{slug}/delete', ['as' => 'post_destroy', 'uses'=>'PostController@destroy']);
 
 
-	Route::get('category', ['as' => 'category', 'uses'=>'CategoryController@index']);
-	Route::get('category/add', ['as' => 'category_create', 'uses'=>'CategoryController@create']);
-	Route::post('category/add', ['as' => 'category_store', 'uses'=>'CategoryController@store']);
-	Route::get('category/{slug}/edit', ['as' => 'category_edit', 'uses'=>'CategoryController@edit']);
-	Route::post('category/{slug}/edit', ['as' => 'category_update', 'uses'=>'CategoryController@update']);
-	Route::get('category/{slug}/delete', ['as' => 'category_destroy', 'uses'=>'CategoryController@destroy']);
+	Route::resource('category', 'CategoryController');
+	
+	// Route::get('category', ['as' => 'category', 'uses'=>'CategoryController@index']);
+	// Route::get('category/add', ['as' => 'category_create', 'uses'=>'CategoryController@create']);
+	// Route::post('category/add', ['as' => 'category_store', 'uses'=>'CategoryController@store']);
+	// Route::get('category/{slug}/edit', ['as' => 'category_edit', 'uses'=>'CategoryController@edit']);
+	// Route::post('category/{slug}/edit', ['as' => 'category_update', 'uses'=>'CategoryController@update']);
+	// Route::get('category/{slug}/delete', ['as' => 'category_destroy', 'uses'=>'CategoryController@destroy']);
 
 
 });

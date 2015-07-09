@@ -7,9 +7,9 @@
 
 {!!
 Form::open(array(
-				'method' => 'POST', 
+				'method' => 'PUT', 
 				'route' => array(
-							'dashboard::category_update', 
+							'dashboard::dashboard.category.update', 
 							$category->slug,
 							)
 					)

@@ -12,6 +12,12 @@
 */
 
 Route::get('/', function () {
+	dd('in');
+	return view('welcome');
+});
+
+Route::get('public', function () {
+	dd('in');
 	return view('welcome');
 });
 
@@ -84,6 +90,7 @@ Route::get('user/profile', [
 
 
 Route::get('frontend/',function(){
+	
 	
 	// return $url = route('top3');
 	// return $url = route('donee::dashboard');
@@ -219,49 +226,40 @@ Route::group(['as'=>'blade::'],function(){
 });
 
 
-Route::group(['as' => 'dashboard::'], function () {
+Route::group(['prefix' => 'dashboard','as' => 'dashboard::'], function () {
 	Route::get('dashboard', ['as' => 'dashboard', function () {
 		return view('admin/dashboard');
 	}]);
 
 	//post management
-	/*
-	Route::get('post', ['as' => 'posts', function () {
-		$data['posts']=array(
-			array('slug'=>'gallery','desc'=>'gallery description'),
-			array('slug'=>'inspiration','desc'=>'inspiration description'),
-			array('slug'=>'art','desc'=>'art description'),
-			);
-		return view('admin/post/index',$data);
-	}]);
-	Route::get('post/{slug}', ['as' => 'post', function ($slug) {
-		$data['post']=array('slug'=>'art','desc'=>'art description');
-		return view('admin/post/view',$data);
-	}]);
-	Route::get('post/{slug}/edit', ['as' => 'post_edit', function ($slug) {
-		$data['post']=array('slug'=>'art','desc'=>'art description');
-		return view('admin/post/edit',$data);
-	}]);
-	Route::get('post/{slug}/delete', ['as' => 'post_delete', function ($slug) {
-		$data['post']=array('slug'=>'art','desc'=>'art description');
-		return view('admin/post/delete',$data);
-	}]);
-	Route::get('post/add', ['as' => 'post_add', function ($slug) {
-		$data['post']=array('slug'=>'art','desc'=>'art description');
-		return view('admin/post/add',$data);
-	}]);
-	*/
 
 	// Route::get('users/banned', ['as' => 'admin.access.users.banned', 'uses' => 'UserController@banned']);
 	
-	Route::get('post', ['as' => 'posts', 'uses'=>'PostController@index']);
+	Route::get('post', ['as' => 'post', 'uses'=>'PostController@index']);
+
+	// Route::get('post/{slug}/edit',['as'=>'post_edit', function(App\Post $post)
+	// {
+	// 	dd($post);
+	// 	// return print_r($post);
+	// }]);
+
 	Route::get('post/add', ['as' => 'post_create', 'uses'=>'PostController@create']);
 	Route::post('post/add', ['as' => 'post_store', 'uses'=>'PostController@store']);
-	Route::get('post/{slug}', ['as' => 'post', 'uses'=>'PostController@show']);
+	Route::get('post/{slug}', ['as' => 'post_show', 'uses'=>'PostController@show']);
 	Route::get('post/{slug}/edit', ['as' => 'post_edit', 'uses'=>'PostController@edit']);
 	Route::post('post/{slug}/edit', ['as' => 'post_update', 'uses'=>'PostController@update']);
 	Route::get('post/{slug}/delete', ['as' => 'post_destroy', 'uses'=>'PostController@destroy']);
-	
+
+
+	Route::get('category', ['as' => 'category', 'uses'=>'CategoryController@index']);
+	Route::get('category/add', ['as' => 'category_create', 'uses'=>'CategoryController@create']);
+	Route::post('category/add', ['as' => 'category_store', 'uses'=>'CategoryController@store']);
+	Route::get('category/{slug}', ['as' => 'category_show', 'uses'=>'CategoryController@show']);
+	Route::get('category/{slug}/edit', ['as' => 'category_edit', 'uses'=>'CategoryController@edit']);
+	Route::post('category/{slug}/edit', ['as' => 'category_update', 'uses'=>'CategoryController@update']);
+	Route::get('category/{slug}/delete', ['as' => 'category_destroy', 'uses'=>'CategoryController@destroy']);
+
+
 });
 
 

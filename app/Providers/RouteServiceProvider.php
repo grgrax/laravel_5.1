@@ -28,6 +28,10 @@ class RouteServiceProvider extends ServiceProvider
         $router->pattern('id','[0-9]+');
         $router->pattern('slug','[A-Za-z]+');
 
+        //bind to Post Model
+        // $router->model('user', 'App\Post');
+
+
         parent::boot($router);
     }
 

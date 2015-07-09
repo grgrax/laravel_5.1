@@ -72,16 +72,16 @@ textarea#textareaid{
 }
 
 input, textarea {
-z-index: 1;
-border: 0;
-border-radius: 0;
-font-size: 1.5em;
-background: 0 0;
-box-shadow: none!important;
+	z-index: 1;
+	border: 0;
+	border-radius: 0;
+	font-size: 1.5em;
+	background: 0 0;
+	box-shadow: none!important;
 }
 .myglyphicon {
-    font-size: 3em;
-    margin: 0.3em 0.3em;
+	font-size: 3em;
+	margin: 0.3em 0.3em;
 }
 footer{
 	padding: 1em;
@@ -93,4 +93,14 @@ footer{
 }
 .footer{
 	background-color: rgba(111, 113, 107, 0.31) !important;
+}
+
+#dashboard .content{
+	background-color: #f8f8f8;
+	min-height: 550px;
+	margin-top: 47px;
+}
+#dashboard .footer{
+	background-color: rgb(196, 199, 207);	
+	padding: 2px;
 }

@@ -1,31 +1,36 @@
-@extends('layouts.layout')
+@extends('admin.layouts.layout')
 
 @section('title', 'Posts')
 
 @section('content')
-<div class="content mysection1" id="contact">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="heading">Posts</h1>
-				<ul>					
-					@foreach($posts as $post)
-					<li>{{$post['slug']}}</li>
-					<a href="{{ $url = route('dashboard::post', ['slug'=>$post['slug']])}}	">
-						<p>{{ $post['desc']}}</p>						
-					</a>
-					<a href="{{ $url = route('dashboard::post_edit', ['slug'=>$post['slug']])}}	">
-						<p>{{ $post['desc']}}</p>						
-					</a>
-					<a href="{{ $url = route('dashboard::post_add')}}	">
-						<p>{{ $post['desc']}}</p>						
-					</a>
-					@endforeach
-				</ul>		
+<h3 class="heading">Posts</h3>
+<a href="{{ route('dashboard::post_create') }}">New</a><hr>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Title</th>
+			<th>Created at</th>
+			<th>Update at</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
 
-			</div>
-		</div>
-	</div>
-</div>
+		@foreach($posts as $post)
+		<tr>
+			<td>{{$post['id']}}</td>
+			<td>{{$post['title']}}</td>
+			<td>{{$post['created_at']}}</td>
+			<td>{{$post['updated_at']}}</td>
+			<td>
+				<a href="{{ route('dashboard::post_edit',['slug'=>$post['slug']]) }}">Edit</a> / 							
+				<a href="{{ route('dashboard::post_destroy',['slug'=>$post['slug']]) }}">Delete</a>							
+			</td>
+		</tr>
+		@endforeach
+
+	</tbody>
+</table>
 @endsection
 

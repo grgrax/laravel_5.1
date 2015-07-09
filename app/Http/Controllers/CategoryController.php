@@ -6,12 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Post;
 
-use Input;
-use Redirect;
+use App\Category;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::get();
-        // dd($posts);
-        return view('admin/post/index',compact('posts'));
+        $categories=Category::get();
+        return view('admin/category/index',compact('categories'));
     }
 
     /**
@@ -32,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin/post/add');
+        return view('admin/category/add');
     }
 
     /**
@@ -42,12 +39,7 @@ class PostController extends Controller
      */
     public function store()
     {
-        $post=new Post;
-        $post->title=Input::get('title');
-        $post->slug=str_slug(Input::get('title'));
-        $post->user_id=4;
-        $post->save();
-        return Redirect::route('dashboard::post');
+        dd('s');
     }
 
     /**
@@ -58,7 +50,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return die("s");
+        dd('s');
     }
 
     /**
@@ -67,11 +59,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $post=Post::where('slug',$slug)->get()->first();
-        // dd($post);
-        return view('admin/post/edit',compact('post'));
+        dd('e');
     }
 
     /**
@@ -80,12 +70,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($slug)
+    public function update($id)
     {
-        $post=Post::where('slug',$slug)->get()->first();
-        $post->title(Input::get('title'));
-        $post->save();
-        return redirect(route('dashboard::post'));
+        dd('u');
     }
 
     /**
@@ -96,6 +83,6 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd('d');
     }
 }

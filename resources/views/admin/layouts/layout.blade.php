@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <!-- responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel App Name - @yield('title')</title>
+    <title>Laravel - @yield('title')</title>
 
     <!-- bootstrap   -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
@@ -24,20 +24,22 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".mynavbar">
+<body data-spy="scroll" data-target=".mynavbar" id="dashboard">
     <!-- header -->
     @include('admin/includes/header')
     <!-- header -->
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row content">
+        <div class="col-md-2">
             <!-- sidebar -->
             @include('admin/includes/sidebar')
             <!-- sidebar -->
         </div>
-        <div class="col-md-8">
-            <!-- content -->
-            @yield('content')
-            <!-- content -->
+        <div class="col-md-10">
+            <div class="row">                
+                <!-- content -->
+                @yield('content')
+                <!-- content -->
+            </div>
         </div>
     </div>
     <div class="row">

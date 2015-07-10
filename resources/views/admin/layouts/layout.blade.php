@@ -28,27 +28,23 @@
     <!-- header -->
     @include('admin/includes/header')
     <!-- header -->
-    <div class="row content">
+    <div class="content">
         <div class="col-md-2">
             <!-- sidebar -->
             @include('admin/includes/sidebar')
             <!-- sidebar -->
         </div>
         <div class="col-md-10">
-            <div class="row">                
-                <!-- content -->
-                @yield('content')
-                <!-- content -->
-            </div>
+            <!-- content -->
+            @yield('content')
+            <!-- content -->
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <!-- footer -->
-            @include('admin/includes/footer')
-            <!-- @yield('footer') -->
-            <!-- footer -->
-        </div>
+    <div class="col-md-12">
+        <!-- footer -->
+        @include('admin/includes/footer')
+        <!-- @yield('footer') -->
+        <!-- footer -->
     </div>
 </body>
 

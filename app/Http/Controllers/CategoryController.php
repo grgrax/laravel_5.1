@@ -21,8 +21,8 @@ class CategoryController extends Controller
     public function index()
     {
         // $categories=Category::get();
-        // $categories=Category::paginate(5);
-        $categories=Category::simplePaginate(5);
+        $categories=Category::paginate(5);
+        // $categories=Category::simplePaginate(5);
 
         $categories->setPath(route('dashboard::dashboard.category.index'));
 
@@ -44,7 +44,7 @@ class CategoryController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store_()
     {
         $category=new Category;
         $category->title=Input::get('title');
@@ -53,6 +53,18 @@ class CategoryController extends Controller
         return Redirect::route('dashboard::dashboard.category.index');
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required|min:3|max:10',
+            ]);
+        // The blog post is valid, store in database...
+        $category=new Category;
+        $category->title=Input::get('title');
+        $category->slug=str_slug(Input::get('title'));
+        $category->save();
+        return Redirect::route('dashboard::dashboard.category.index');
+    }
 
     /**
      * Show the form for editing the specified resource.

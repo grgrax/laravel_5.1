@@ -3,8 +3,11 @@
 @section('title', 'Categories')
 
 @section('content')
-<h3 class="heading">Categories</h3>
-<a href="{{ route('dashboard::dashboard.category.create') }}">New</a><hr>
+<h2 class="heading">Categories 
+	<span class="badge total">{!! $categories->total() !!}	</span> 
+</h2>	
+<a href="{{ route('dashboard::dashboard.category.create') }}" class="btn btn-info">New</a>
+
 <table class="table table-hover">
 	<thead>
 		<tr>

@@ -5,6 +5,8 @@
 @section('content')
 <h3 class="heading">New Category</h3><hr>
 
+@include('admin/includes/message')
+
 
 
 {!! Form::open(['route'=> 'dashboard::dashboard.category.store','method'=>'POST']) !!}

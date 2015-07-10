@@ -27,8 +27,16 @@
 			<td>{{$category['created_at']}}</td>
 			<td>{{$category['updated_at']}}</td>
 			<td>
-				<a href="{{ route('dashboard::dashboard.category.edit',$category['slug']) }}">Edit</a> / 			
-				<a href="{{ route('dashboard::dashboard.category.destroy',['slug'=>$category['slug']]) }}">Delete</a>							
+				<a href="{{ route('dashboard::dashboard.category.edit',$category['slug']) }}">Edit</a> / 	
+				<span>
+					{!! Form::open([
+					'method' => 'DELETE',
+					'route' => ['dashboard::dashboard.category.destroy',$category['slug']]
+					]) !!}
+					{!! Form::Submit('x', ['class' => 'glyphicon glyphicon-remove']) !!}
+					{!! Form::close() !!}
+				</span>
+				<!-- <a href="{{ route('dashboard::dashboard.category.destroy',['slug'=>$category['slug']]) }}">Delete</a>							 -->
 			</td>
 		</tr>
 		@endforeach

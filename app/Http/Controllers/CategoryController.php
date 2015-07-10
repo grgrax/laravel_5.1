@@ -65,6 +65,8 @@ class CategoryController extends Controller
         $category->slug=str_slug(Input::get('title'));
         $category->save();
 
+        // Category::create($request->all());
+
         $request->session()->flash('success', 'Category added successfully!');
         return Redirect::route('dashboard::dashboard.category.index');
     }

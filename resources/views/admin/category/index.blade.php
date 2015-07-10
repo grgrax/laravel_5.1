@@ -27,7 +27,7 @@
 			<td>{{$category['created_at']}}</td>
 			<td>{{$category['updated_at']}}</td>
 			<td>
-				<a href="{{ route('dashboard::dashboard.category.edit',['slug'=>$category['slug']]) }}">Edit</a> / 							
+				<a href="{{ route('dashboard::dashboard.category.edit',$category['slug']) }}">Edit</a> / 			
 				<a href="{{ route('dashboard::dashboard.category.destroy',['slug'=>$category['slug']]) }}">Delete</a>							
 			</td>
 		</tr>

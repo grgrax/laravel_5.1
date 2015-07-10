@@ -26,6 +26,7 @@ class CategoryController extends Controller
 
         $categories->setPath(route('dashboard::dashboard.category.index'));
 
+        // $request->session()->put('success', '');
         return view('admin/category/index',compact('categories'));
     }
 
@@ -56,13 +57,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|min:3|max:10',
+            'title' => 'required|min:3|max:10|alpha_dash',
             ]);
         // The blog post is valid, store in database...
         $category=new Category;
         $category->title=Input::get('title');
         $category->slug=str_slug(Input::get('title'));
         $category->save();
+
+        $request->session()->flash('success', 'Category added successfully!');
         return Redirect::route('dashboard::dashboard.category.index');
     }
 

@@ -105,3 +105,10 @@ footer{
 	padding: 2px;
 }
 
+.alert {
+	margin-top: 2%;
+	padding: 10px;
+}
+.alert p, .alert ul li{
+	font-size: 14px;
+}

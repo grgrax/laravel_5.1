@@ -32,6 +32,10 @@
 
 	</tbody>
 </table>
+
+{!! $categories->render() !!}
+
+
 @endsection
 
 

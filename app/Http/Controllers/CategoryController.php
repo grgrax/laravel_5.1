@@ -20,7 +20,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::get();
+        // $categories=Category::get();
+        // $categories=Category::paginate(5);
+        $categories=Category::simplePaginate(5);
+
+        $categories->setPath(route('dashboard::dashboard.category.index'));
+
         return view('admin/category/index',compact('categories'));
     }
 

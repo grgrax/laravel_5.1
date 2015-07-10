@@ -3,11 +3,12 @@
 @section('title', 'Categories')
 
 @section('content')
-<h2 class="heading">Categories 
+<h3 class="heading">Categories 
 	<span class="badge total">{!! $categories->total() !!}	</span> 
-</h2>	
+</h3>	
+<hr>
 <a href="{{ route('dashboard::dashboard.category.create') }}" class="btn btn-info">New</a>
-
+<hr>
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -33,7 +34,7 @@
 					'method' => 'DELETE',
 					'route' => ['dashboard::dashboard.category.destroy',$category['slug']]
 					]) !!}
-					{!! Form::Submit('x', ['class' => 'glyphicon glyphicon-remove']) !!}
+					{!! Form::Submit('Delete', ['class' => 'btn-xs btn-danger']) !!}
 					{!! Form::close() !!}
 				</span>
 				<!-- <a href="{{ route('dashboard::dashboard.category.destroy',['slug'=>$category['slug']]) }}">Delete</a>							 -->

@@ -57,7 +57,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|min:3|max:10|alpha_dash',
+            'title' => 'required|min:3|max:20|alpha_dash',
             ]);
         // The blog post is valid, store in database...
         $category=new Category;
@@ -90,12 +90,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($slug)
+    public function update($slug,Request $request)
     {
         $category=Category::where('slug',$slug)->get()->first();
         $category->title=Input::get('title');
         $category->save();
-        // return Redirect::route('dashboard::category');
+        $request->session()->flash('success', 'Category updated successfully!');
         return Redirect::route('dashboard::dashboard.category.index');
     }
 
@@ -105,11 +105,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($slug)
+    public function destroy($slug,Request $request)
     {
         $category=Category::where('slug',$slug)->get()->first();
         $category->delete();
-        // return Redirect::route('dashboard::category');
+        $request->session()->flash('success', 'Category deleted successfully!');
         return Redirect::route('dashboard::dashboard.category.index');
 
     }

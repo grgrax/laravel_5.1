@@ -20,7 +20,10 @@ Form::open(array(
 		<input type="text" name="title" class="form-control" id="" placeholder="Input field"
 		value="{{ $category->title }}">
 	</div>
+
 	<button type="submit" name="submit" class="btn btn-success">Submit</button>
+   <a href="{{ route('dashboard::dashboard.category.index') }}" class="btn btn-warning">Cancel</a>
+
 	
 {!! Form::close() !!}
 @endsection
